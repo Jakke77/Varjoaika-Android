@@ -9,3 +9,4 @@ signing.properties
 .signing/
 *.apk
 *.aab
+/dist/

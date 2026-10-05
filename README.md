@@ -8,7 +8,7 @@ Oma Android-sovellus goottikalenterille: 13 kuukautta, 30 päivää, varjomaiset
 
 Lataa julkaistu `Varjoaika-1.0.0.apk` puhelimelle, avaa se ja hyväksy asennus käyttämästäsi selaimesta/tiedostosovelluksesta. Avaa **Varjoaika**. Paina päivää ja lisää merkintä tai muistutus. Päivämäärissä ovat tutut päivät 0–29 ja kuukaudet 0–12; virallinen päivämäärä näkyy rinnalla. Tallennettuihin merkintöihin palaat Merkinnät-painikkeesta. Kuukausien nimet ja laskenta vastaavat [työpöytäkalenteria](https://github.com/Jakke77/goottikalenteri).
 
-Kotinäytössä: paina tyhjää kohtaa pitkään → Widgetit → Varjoaika. Valitse malli ja sen ulkoasu. **⚙** muuttaa vain kyseisen widgetin asetuksia. Kalenderin nuolet vaihtavat kuukautta, päivän napautus avaa päivän sovelluksessa. Widgetiä voi venyttää kotinäytön tavallisilla eleillä.
+Kotinäytössä: paina tyhjää kohtaa pitkään → Widgetit → Varjoaika. Valitse malli ja sen ulkoasu. **⚙** muuttaa vain kyseisen widgetin asetuksia. Kalenterin nuolet vaihtavat kuukautta, päivän napautus avaa päivän sovelluksessa. Widgetiä voi venyttää kotinäytön tavallisilla eleillä.
 
 | Widget | Oletuskoko | Sisältö |
 |---|---|---|
@@ -45,5 +45,7 @@ gradle testDebugUnitTest lintDebug assembleRelease
 ```
 
 GitHub Actions ajaa päivämäärän testit, lintin ja laitetestit API 21- ja 36-emulaattoreissa. Laitetestit varmistavat tarpeettomien sijainti- ja kalenterioikeuksien puuttumisen, tietojen säilymisen ja muistutuksen kuittaamisen kerran sekä kaikkien widgetien RemoteViews-näkymien rakentumisen eri koossa. Emulaattorit eivät korvaa testausta omalla puhelimella. Actionsin debug-APK on kehittäjätestejä varten; käytä julkaisuissa olevaa samalla yksityisellä avaimella allekirjoitettua APK:ta päivityksiin.
+
+[APK-julkaisun ylläpito ja allekirjoitusavaimen varmuuskopio](MAINTAINER.md).
 
 MIT. Sovelluksen kuvat ja huhuilu ovat alkuperäisiä. [Androidin widgetit](https://developer.android.com/develop/ui/views/appwidgets/overview), [hälytykset](https://developer.android.com/develop/background-work/services/alarms), [ilmoituslupa](https://developer.android.com/develop/ui/views/notifications/notification-permission).

@@ -22,7 +22,22 @@ public class DeviceTest {
         db=new EntryStore(c);assertEquals(e.body,db.get(id).body);assertTrue(db.claim(id));assertFalse(db.claim(id));assertTrue(db.get(id).delivered);
         e=db.get(id);e.delivered=false;e.due=System.currentTimeMillis()+600000;db.save(e);assertFalse(db.get(id).delivered);db.remove(id);assertNull(db.get(id));db.close();
     }
+    @Test public void weeklyTimeCheckIsPersistentAndCanBeDisabled() {
+        Context c=context();android.app.job.JobScheduler scheduler=(android.app.job.JobScheduler)c.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        NtpJob.prefs(c).edit().putBoolean("enabled",true).commit();NtpJob.schedule(c);
+        android.app.job.JobInfo found=null;for(android.app.job.JobInfo info:scheduler.getAllPendingJobs())if(info.getId()==NtpJob.ID)found=info;
+        assertNotNull(found);assertTrue(found.isPeriodic());assertTrue(found.isPersisted());assertEquals(NtpJob.WEEK,found.getIntervalMillis());assertEquals(android.app.job.JobInfo.NETWORK_TYPE_ANY,found.getNetworkType());
+        NtpJob.prefs(c).edit().putBoolean("enabled",false).commit();NtpJob.schedule(c);
+        for(android.app.job.JobInfo info:scheduler.getAllPendingJobs())assertNotEquals(NtpJob.ID,info.getId());
+        NtpJob.prefs(c).edit().putBoolean("enabled",true).commit();NtpJob.schedule(c);
+    }
+    @Test public void deniedNotificationsKeepReminderPending() {
+        Context c=context();if(ReminderReceiver.canNotify(c))return;
+        EntryStore db=new EntryStore(c);EntryStore.Entry e=new EntryStore.Entry();e.day=7;e.title="Ilmoituslupatesti";e.body="";e.due=System.currentTimeMillis()-1000;
+        db.save(e);try{ReminderReceiver.deliver(c);assertFalse(db.get(e.id).delivered);}finally{db.remove(e.id);db.close();}
+    }
     @Test public void everyWidgetInflatesAtSmallAndLargeSizes() {
+        assertEquals(5,VarjoWidget.PROVIDERS.length);
         InstrumentationRegistry.getInstrumentation().runOnMainSync(()->{
             Context c=context();int id=8000;
             for(Class<?> provider:VarjoWidget.PROVIDERS) {
