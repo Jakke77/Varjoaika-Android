@@ -1,0 +1,4 @@
+<resources>
+    <string name="widget_description">Varjoajan kello, kalenteri. Ei verkkoyhteyttä.</string>
+    <string name="app_name">Varjoaika</string>
+</resources>
