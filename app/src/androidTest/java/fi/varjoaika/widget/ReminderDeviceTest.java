@@ -22,6 +22,8 @@ public class ReminderDeviceTest {
         c=InstrumentationRegistry.getInstrumentation().getTargetContext();
         original=Sound.prefs(c).getAll();
         Sound.prefs(c).edit().putBoolean("enabled",true).putInt("volume",65).remove("uri").commit();
+        if(Build.VERSION.SDK_INT>=33)InstrumentationRegistry.getInstrumentation().getUiAutomation()
+            .grantRuntimePermission(c.getPackageName(),android.Manifest.permission.POST_NOTIFICATIONS);
     }
     @After public void restore() {
         ReminderReceiver.manager(c).cancel("varjoaika-test",0);
@@ -86,5 +88,28 @@ public class ReminderDeviceTest {
             Notification n=ReminderReceiver.notification(c,e,false);
             assertTrue(n.actions==null||n.actions.length==0);
         }finally{db.remove(e.id);db.close();}
+    }
+    @Test public void dueReminderPostsOnceWithSystemSound() {
+        assertTrue(ReminderReceiver.canNotify(c));
+        EntryStore db=new EntryStore(c);EntryStore.Entry e=entry();e.id=0;e.due=System.currentTimeMillis()-1000;db.save(e);
+        try {
+            ReminderReceiver.deliver(c);assertTrue(db.get(e.id).delivered);
+            if(Build.VERSION.SDK_INT>=23) {
+                android.service.notification.StatusBarNotification posted=null;
+                long deadline=android.os.SystemClock.elapsedRealtime()+3000;
+                while(posted==null&&android.os.SystemClock.elapsedRealtime()<deadline) {
+                    for(android.service.notification.StatusBarNotification n:ReminderReceiver.manager(c).getActiveNotifications())
+                        if("varjoaika".equals(n.getTag())&&n.getId()==(int)e.id)posted=n;
+                    if(posted==null)android.os.SystemClock.sleep(50);
+                }
+                assertNotNull(posted);
+                long firstPost=posted.getPostTime();
+                assertEquals(e.title,posted.getNotification().extras.getString(Notification.EXTRA_TITLE));
+                ReminderReceiver.deliver(c);
+                for(android.service.notification.StatusBarNotification n:ReminderReceiver.manager(c).getActiveNotifications())
+                    if("varjoaika".equals(n.getTag())&&n.getId()==(int)e.id)assertEquals(firstPost,n.getPostTime());
+            }else ReminderReceiver.deliver(c);
+            assertTrue(db.get(e.id).delivered);
+        }finally{ReminderReceiver.cancelNotification(c,e.id);db.remove(e.id);db.close();}
     }
 }
