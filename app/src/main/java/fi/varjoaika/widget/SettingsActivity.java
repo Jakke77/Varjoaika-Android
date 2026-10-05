@@ -12,7 +12,7 @@ import android.widget.*;
 public class SettingsActivity extends Activity {
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);LinearLayout root=Ui.root(this);
-        Ui.heading(root,"Huuhkajan ääni","Huhuilu on sovellusta varten luotu jäljitelmä. Kaikki toimii ilman verkkoyhteyttä.");
+        Ui.heading(root,"Huuhkajan ääni","Huhuilu on sovellusta varten luotu jäljitelmä. Kalenteri, widgetit ja muistutukset toimivat ilman verkkoyhteyttä.");
         CheckBox enabled=new CheckBox(this);enabled.setText("Toista ilmoitusääni");enabled.setChecked(Sound.prefs(this).getBoolean("enabled",true));root.addView(enabled);
         TextView title=Ui.text(this,"",16,Ui.INK);root.addView(title);SeekBar volume=new SeekBar(this);volume.setMax(100);volume.setProgress(Sound.prefs(this).getInt("volume",65));title.setText("Voimakkuus "+volume.getProgress()+" %");root.addView(volume);
         volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){public void onStartTrackingTouch(SeekBar b){}public void onStopTrackingTouch(SeekBar b){}public void onProgressChanged(SeekBar b,int p,boolean user){title.setText("Voimakkuus "+p+" %");}});
