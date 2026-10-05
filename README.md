@@ -1,6 +1,6 @@
 # Varjoaika Android
 
-Oma Android-sovellus goottikalenterille: 13 kuukautta, 30 päivää, varjomaiset nimet, omat muistiinpanot ja muistutukset. Kalenteri ja widgetit toimivat offline eikä sovellus pyydä sijainti- tai puhelimen kalenterioikeuksia. Vain valinnainen viikoittainen MIKES-aikatarkistus käyttää Internet-oikeutta. Ei säätä, mainoksia, käyttäjätiliä eikä Pythonia puhelimeen.
+Oma Android-sovellus goottikalenterille: 13 kuukautta, 30 päivää, varjomaiset nimet, omat muistiinpanot ja muistutukset. Kalenteri ja widgetit toimivat offline eikä sovellus pyydä sijainti- tai puhelimen kalenterioikeuksia. Valinnaiset MIKES-aikatarkistus ja GitHub-päivitykset käyttävät Internet-oikeutta. Ei säätä, mainoksia, käyttäjätiliä eikä Pythonia puhelimeen.
 
 **[Julkaisut ja APK-liitteet](https://github.com/Jakke77/Varjoaika-Android/releases)**
 
@@ -33,6 +33,14 @@ Tiedostovalitsimella voit valita puhelimen tukeman oman WAV-, OGG-, MP3- tai muu
 **Asetukset → Testaa ääni ja ponnahdusilmoitus** lähettää testin muuttamatta kalenterimerkintöjä. **Muistutusten ilmoitusasetukset** avaa käytössä olevan kanavan asetukset. Galaxy S22:ssa salli **Ääni ja värinä** sekä **Näytä ponnahdusikkunana**. Jos ilmoitusluokkia ei näy, ota käyttöön **Puhelimen asetukset → Ilmoitukset → Lisäasetukset → Hallitse kunkin sovelluksen ilmoitusluokkia** (nimet vaihtelevat One UI -version mukaan).
 
 Käynnistys puhelimen uudelleenkäynnistyksen ja sovelluspäivityksen jälkeen palauttaa ajastukset. Androidin **Pakota lopettamaan** estää hälytykset, kunnes avaat sovelluksen uudelleen. Valmistajan virransäästö voi viivästyttää hälytyksiä; sovellus ei ohita puhelimen sääntöjä. Tiedot säilyvät saman allekirjoituksen päivityksissä. Sovelluksen poisto poistaa myös paikalliset merkinnät, joten älä poista sovellusta päivitystä varten.
+
+## Automaattiset ja manuaaliset päivitykset
+
+**Asetukset → Sovelluksen päivitykset** näyttää asennetun version ja viimeisen onnistuneen tarkistuksen. **Tarkista päivitykset** tarkistaa GitHubin heti. **Lataa päivitys** lataa uuden APK:n; manuaalinen lataus voi käyttää myös mobiilidataa. **Asenna päivitys** avaa Androidin asennusnäkymän. Android 8+ voi pyytää ensin sallimaan asennukset Varjoajasta; palaa sen jälkeen Asenna päivitys -painikkeeseen.
+
+Oletuksena sovellus tarkistaa uuden version kerran päivässä ja lataa uuden APK:n automaattisesti Wi-Fissä. Voit poistaa automaattilatauksen tai koko automaattitarkistuksen käytöstä. Tarkistus odottaa verkkoyhteyttä; Androidin virransäästö voi viivästyttää sitä. Ajastus säilyy uudelleenkäynnistyksen ja sovelluspäivityksen yli. Tarkistus ei lähetä merkintöjä tai henkilötietoja GitHubiin. Tavallinen sovellus tarvitsee käyttäjän hyväksynnän asennukseen myös automaattilatauksen jälkeen.
+
+Lähde on vain julkisen [Jakke77/Varjoaika-Android-repon julkaisut](https://github.com/Jakke77/Varjoaika-Android/releases). Luonnoksia, testijulkaisuja, debug/test/unsigned-APK:ita ja lähdekoodiarkistoja ei tarjota päivityksinä. Pelkkä julkaisutagi ilman APK-liitettä näkyy tilaviestinä. Verkkovirhe ei poista aiemmin löytynyttä päivitystä. Ennen asennusta tarkistetaan APK:n sovellustunniste, suurempi versionCode, sama allekirjoitus ja GitHubin SHA256-tarkistussumma silloin kun se on saatavilla. Ilmoitus uudesta tai ladatusta versiosta näkyy, kun sovelluksen ilmoitukset on sallittu.
 
 ## Viikoittainen MIKES-aikatarkistus
 

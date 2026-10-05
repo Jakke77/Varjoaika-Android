@@ -10,8 +10,9 @@ import android.provider.Settings;
 import android.widget.*;
 
 public class SettingsActivity extends Activity {
+    private UpdatePanel updates;
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);LinearLayout root=Ui.root(this);
+        super.onCreate(state);LinearLayout root=Ui.root(this);updates=new UpdatePanel(this,root);
         Ui.heading(root,"Huuhkajan ääni","Huhuilu on sovellusta varten luotu jäljitelmä. Kalenteri, widgetit ja muistutukset toimivat ilman verkkoyhteyttä.");
         CheckBox enabled=new CheckBox(this);enabled.setText("Toista ilmoitusääni");enabled.setChecked(Sound.prefs(this).getBoolean("enabled",true));root.addView(enabled);
         TextView title=Ui.text(this,"",16,Ui.INK);root.addView(title);SeekBar volume=new SeekBar(this);volume.setMax(100);volume.setProgress(Sound.prefs(this).getInt("volume",65));title.setText("Esikuuntelun voimakkuus "+volume.getProgress()+" %");root.addView(volume);
@@ -44,10 +45,10 @@ public class SettingsActivity extends Activity {
         CheckBox weekly=new CheckBox(this);weekly.setText("Tarkista aika kerran viikossa MIKESiltä");weekly.setChecked(NtpJob.prefs(this).getBoolean("enabled",true));root.addView(weekly);
         TextView status=Ui.text(this,NtpJob.status(this),14,Ui.MUTED);root.addView(status);
         weekly.setOnCheckedChangeListener((b,value)->{NtpJob.prefs(this).edit().putBoolean("enabled",value).apply();NtpJob.schedule(this);status.setText(NtpJob.status(this));});
-        root.addView(Ui.text(this,"Vain ajan tarkistus käyttää verkkoa (NTP/UDP 123). Android voi viivästyttää viikoittaista työtä virransäästössä. Kello käyttää Androidin järjestelmäaikaa; sovellus ei voi asettaa puhelimen aikaa. Pidä puhelimen automaattinen päivä ja aika käytössä.",14,Ui.MUTED));
+        root.addView(Ui.text(this,"Ajan tarkistus käyttää verkkoa (NTP/UDP 123); päivitysten tarkistus ja lataus käyttävät GitHubia. Android voi viivästyttää viikoittaista työtä virransäästössä. Kello käyttää Androidin järjestelmäaikaa; sovellus ei voi asettaa puhelimen aikaa. Pidä puhelimen automaattinen päivä ja aika käytössä.",14,Ui.MUTED));
         Button timeSettings=Ui.button(this,"Avaa puhelimen aika-asetukset");root.addView(timeSettings);timeSettings.setOnClickListener(v->startActivity(new Intent(Settings.ACTION_DATE_SETTINGS)));
     }
-    @Override protected void onResume(){super.onResume();ReminderReceiver.deliver(this);ReminderReceiver.schedule(this);}
+    @Override protected void onResume(){super.onResume();ReminderReceiver.deliver(this);ReminderReceiver.schedule(this);if(updates!=null)updates.resume();}
     @Override public void onRequestPermissionsResult(int request,String[] permissions,int[] results){super.onRequestPermissionsResult(request,permissions,results);ReminderReceiver.deliver(this);ReminderReceiver.schedule(this);}
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);
@@ -57,5 +58,5 @@ public class SettingsActivity extends Activity {
             catch(SecurityException e){Toast.makeText(this,"Äänitiedoston käyttöoikeutta ei saatu",Toast.LENGTH_LONG).show();}
         }
     }
-    @Override protected void onPause(){Sound.stop();super.onPause();}
+    @Override protected void onPause(){Sound.stop();if(updates!=null)updates.pause();super.onPause();}
 }
