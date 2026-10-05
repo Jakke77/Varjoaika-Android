@@ -81,6 +81,19 @@ public class UpdateDeviceTest {
     @Test public void apkDestinationRejectsInvalidVersionPaths() {
         assertNull(Updates.apkFile(c,"../other"));
         assertNull(Updates.apkFile(c,"1.0.2/other"));
-        assertNotNull(Updates.apkFile(c,"1.0.2"));
+        File file=Updates.apkFile(c,"1.0.2");
+        if(file!=null) {
+            assertEquals("Varjoaika-1.0.2.apk",file.getName());
+            assertEquals(c.getExternalFilesDir(android.os.Environment.DIRECTORY_DOWNLOADS),file.getParentFile());
+        }else {
+            // API 21 emulators (and real devices with unavailable storage) may
+            // legitimately have no external files directory. No download may start.
+            Updates.prefs(c).edit().putString("version","999.0.0")
+                .putString("url","https://github.com/"+ReleaseInfo.REPOSITORY+"/releases/download/v999.0.0/Varjoaika-999.0.0.apk").commit();
+            Updates.download(c,false);
+            assertEquals("error",Updates.prefs(c).getString("download_status",""));
+            assertTrue(Updates.prefs(c).getString("download_error","").contains("tallennustila"));
+            assertEquals(-1,Updates.prefs(c).getLong("download_id",-1));
+        }
     }
 }
