@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+export ANDROID_USER_HOME="$RUNNER_TEMP/varjo-android"
+export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
+mkdir -p "$ANDROID_AVD_HOME"
 sdkmanager "system-images;android-${ANDROID_API};default;x86_64"
 echo no | avdmanager create avd --force --name varjo-test --package "system-images;android-${ANDROID_API};default;x86_64"
+test -f "$ANDROID_AVD_HOME/varjo-test.ini"
+emulator -list-avds
 sudo chown "$USER" /dev/kvm
 emulator -avd varjo-test -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot > emulator.log 2>&1 &
 EMU_PID=$!
