@@ -21,10 +21,12 @@ test "$(adb shell getprop sys.boot_completed | tr -d '\r')" = 1 || { cat emulato
 adb shell settings put global window_animation_scale 0
 adb shell settings put global transition_animation_scale 0
 adb shell settings put global animator_duration_scale 0
-gradle --no-daemon connectedDebugAndroidTest
+gradle --no-daemon -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true connectedDebugAndroidTest
 adb shell am start -n fi.varjoaika.android/fi.varjoaika.widget.CalendarActivity
-mkdir -p previews
-adb pull /sdcard/Android/data/fi.varjoaika.android/files/previews previews/widgets
+mkdir -p previews/widgets
+for provider in VarjoWidget CopperClockWidget CalendarWidget LargeCalendarWidget AgendaWidget; do
+  adb exec-out run-as fi.varjoaika.android cat "files/previews/${provider}.png" > "previews/widgets/${provider}.png"
+done
 sleep 2
 adb exec-out screencap -p > "previews/calendar-api-${ANDROID_API}.png"
 adb logcat -d > device.log

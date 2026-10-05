@@ -49,7 +49,7 @@ public class DeviceTest {
                     view.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.EXACTLY));view.layout(0,0,width,height);
                     if(size[0]==300) {
                         Bitmap preview=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);view.draw(new android.graphics.Canvas(preview));
-                        java.io.File folder=new java.io.File(c.getExternalFilesDir(null),"previews");assertTrue(folder.isDirectory()||folder.mkdirs());
+                        java.io.File folder=new java.io.File(c.getFilesDir(),"previews");assertTrue(folder.isDirectory()||folder.mkdirs());
                         try(java.io.FileOutputStream out=new java.io.FileOutputStream(new java.io.File(folder,provider.getSimpleName()+".png"))){assertTrue(preview.compress(Bitmap.CompressFormat.PNG,100,out));}catch(java.io.IOException error){throw new AssertionError(error);}finally{preview.recycle();}
                     }
                 }id++;
