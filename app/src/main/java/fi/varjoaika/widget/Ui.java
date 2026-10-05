@@ -28,7 +28,14 @@ final class Ui {
         TextView t=new TextView(c);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setPadding(0,dp(c,6),0,dp(c,6));return t;
     }
     static Button button(Context c,String value) {
-        Button b=new Button(c);b.setText(value);b.setTextColor(INK);b.setAllCaps(false);b.setMinHeight(dp(c,48));b.setBackgroundTintList(android.content.res.ColorStateList.valueOf(PANEL));return b;
+        Button b=new Button(c);b.setText(value);b.setTextColor(INK);b.setAllCaps(false);b.setMinHeight(dp(c,48));buttonBackground(b,PANEL);return b;
+    }
+    static void buttonBackground(Button b,int color) {
+        b.setBackgroundTintList(null);
+        android.graphics.drawable.RippleDrawable ripple=new android.graphics.drawable.RippleDrawable(
+            android.content.res.ColorStateList.valueOf(0x33E9A77F),panel(color),null);
+        int gap=dp(b.getContext(),2);
+        b.setBackground(new android.graphics.drawable.InsetDrawable(ripple,gap));
     }
     static EditText input(Context c,String hint,String value) {
         EditText e=new EditText(c);e.setHint(hint);e.setHintTextColor(MUTED);e.setTextColor(INK);e.setText(value);return e;

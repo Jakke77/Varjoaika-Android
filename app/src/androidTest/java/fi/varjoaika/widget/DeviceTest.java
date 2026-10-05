@@ -61,6 +61,17 @@ public class DeviceTest {
             MediaMetadataRetriever media=new MediaMetadataRetriever();try{media.setDataSource(fd.getFileDescriptor(),fd.getStartOffset(),fd.getLength());assertEquals("3200",media.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));}finally{media.release();}
         }
     }
+    @Test public void settingsOpenAndResume() throws Exception {
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        Activity a=instrumentation.startActivitySync(new Intent(context(),SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        assertNotNull(a);
+        try {
+            instrumentation.waitForIdleSync();android.os.SystemClock.sleep(250);
+            Bitmap screenshot=instrumentation.getUiAutomation().takeScreenshot();assertNotNull(screenshot);
+            java.io.File folder=new java.io.File(context().getFilesDir(),"previews");assertTrue(folder.isDirectory()||folder.mkdirs());
+            try(java.io.FileOutputStream out=new java.io.FileOutputStream(new java.io.File(folder,"settings.png"))){assertTrue(screenshot.compress(Bitmap.CompressFormat.PNG,100,out));}finally{screenshot.recycle();}
+        }finally{instrumentation.runOnMainSync(a::finish);}
+    }
     @Test public void calendarOpensAndResumes() {
         Activity a=InstrumentationRegistry.getInstrumentation().startActivitySync(new Intent(context(),CalendarActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         assertNotNull(a);InstrumentationRegistry.getInstrumentation().runOnMainSync(a::finish);

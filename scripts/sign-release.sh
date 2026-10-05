@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT=$(cd -- "$(dirname -- "$0")/.." && pwd)
 INPUT=${1:?Usage: bash scripts/sign-release.sh unsigned.apk apksigner.jar [output.apk]}
 SIGNER=${2:?Official Android SDK apksigner.jar is required}
-OUTPUT=${3:-"$ROOT/dist/Varjoaika-1.0.0.apk"}
+OUTPUT=${3:-"$ROOT/dist/Varjoaika-1.0.1.apk"}
 KEYDIR="$ROOT/.signing"
 umask 077
 mkdir -p "$KEYDIR" "$(dirname -- "$OUTPUT")"

@@ -57,7 +57,7 @@ public class CalendarActivity extends Activity {
                 if(day<0||day>=30) { line.addView(new TextView(this),new LinearLayout.LayoutParams(0,Ui.dp(this,52),1));continue; }
                 long offset=month*30+day;Button tile=Ui.button(this,""+day+(marked.contains(offset)?" •":""));tile.setTextSize(14);tile.setPadding(0,0,0,0);
                 tile.setContentDescription(Dates.label(offset)+(marked.contains(offset)?", merkintöjä":""));
-                tile.setBackgroundTintList(android.content.res.ColorStateList.valueOf(offset==selected?Ui.COPPER:offset==Dates.today()?0xFF46354D:Ui.PANEL));
+                Ui.buttonBackground(tile,offset==selected?Ui.COPPER:offset==Dates.today()?0xFF46354D:Ui.PANEL);
                 if(offset==selected)tile.setTextColor(Ui.BG);
                 tile.setOnClickListener(v->{selected=offset;render();});line.addView(tile,new LinearLayout.LayoutParams(0,Ui.dp(this,52),1));
             }root.addView(line);

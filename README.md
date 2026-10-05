@@ -2,11 +2,13 @@
 
 Oma Android-sovellus goottikalenterille: 13 kuukautta, 30 päivää, varjomaiset nimet, omat muistiinpanot ja muistutukset. Kalenteri ja widgetit toimivat offline eikä sovellus pyydä sijainti- tai puhelimen kalenterioikeuksia. Vain valinnainen viikoittainen MIKES-aikatarkistus käyttää Internet-oikeutta. Ei säätä, mainoksia, käyttäjätiliä eikä Pythonia puhelimeen.
 
-**[Lataa asennettava APK julkaisuista](https://github.com/Jakke77/Varjoaika-Android/releases/latest)**
+**[Julkaisut ja APK-liitteet](https://github.com/Jakke77/Varjoaika-Android/releases)**
+
+APK-jakelu on valmistelussa. Pelkät Source code -arkistot eivät asennu puhelimeen. Allekirjoitettu APK on ylläpitäjällä valmiina.
 
 ## Käyttö
 
-Lataa julkaistu `Varjoaika-1.0.0.apk` puhelimelle, avaa se ja hyväksy asennus käyttämästäsi selaimesta/tiedostosovelluksesta. Avaa **Varjoaika**. Paina päivää ja lisää merkintä tai muistutus. Päivämäärissä ovat tutut päivät 0–29 ja kuukaudet 0–12; virallinen päivämäärä näkyy rinnalla. Tallennettuihin merkintöihin palaat Merkinnät-painikkeesta. Kuukausien nimet ja laskenta vastaavat [työpöytäkalenteria](https://github.com/Jakke77/goottikalenteri).
+Lataa julkaisuun liitetty `Varjoaika-*.apk` puhelimelle, avaa se ja hyväksy asennus käyttämästäsi selaimesta/tiedostosovelluksesta. Avaa **Varjoaika**. Paina päivää ja lisää merkintä tai muistutus. Päivämäärissä ovat tutut päivät 0–29 ja kuukaudet 0–12; virallinen päivämäärä näkyy rinnalla. Tallennettuihin merkintöihin palaat Merkinnät-painikkeesta. Kuukausien nimet ja laskenta vastaavat [työpöytäkalenteria](https://github.com/Jakke77/goottikalenteri).
 
 Kotinäytössä: paina tyhjää kohtaa pitkään → Widgetit → Varjoaika. Valitse malli ja sen ulkoasu. **⚙** muuttaa vain kyseisen widgetin asetuksia. Kalenterin nuolet vaihtavat kuukautta, päivän napautus avaa päivän sovelluksessa. Widgetiä voi venyttää kotinäytön tavallisilla eleillä.
 

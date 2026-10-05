@@ -27,6 +27,7 @@ mkdir -p previews/widgets
 for provider in VarjoWidget CopperClockWidget CalendarWidget LargeCalendarWidget AgendaWidget; do
   adb exec-out run-as fi.varjoaika.android cat "files/previews/${provider}.png" > "previews/widgets/${provider}.png"
 done
+adb exec-out run-as fi.varjoaika.android cat files/previews/settings.png > "previews/settings-api-${ANDROID_API}.png"
 sleep 2
 adb exec-out screencap -p > "previews/calendar-api-${ANDROID_API}.png"
 adb logcat -d > device.log

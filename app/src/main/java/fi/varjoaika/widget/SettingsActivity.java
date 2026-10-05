@@ -30,7 +30,7 @@ public class SettingsActivity extends Activity {
             else startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.parse("package:"+getPackageName())));
         });done.setOnClickListener(v->finish());
         Ui.heading(root,"Kotinäytön widgetit","Paina kotinäytön tyhjää kohtaa pitkään → Widgetit → Varjoaika.");
-        root.addView(Ui.text(this,"Kello 2×2 · Varjokupari 2×3\nKalenteri 3×3 ja 4×4 · Merkinnät 2×3\n\nJokaisella widgetillä on oma teema, peittävyys ja tekstikoko. ⚙ avaa sen asetukset. Kotinäyttö päättää tarkan ruutukoon.",15,Ui.MUTED));
+        root.addView(Ui.text(this,"Kello 2×2 · Varjokupari 2×3\nKalenteri 3×3 ja 4×4 · Merkinnät 2×3\n\nJokaisella widgetillä on oma teema, peittävyys ja tekstikoko. Rataskuvake avaa sen asetukset. Kotinäyttö päättää tarkan ruutukoon.",15,Ui.MUTED));
         Ui.heading(root,"Suomen aika","time.mikes.fi · VTT MIKES");
         CheckBox weekly=new CheckBox(this);weekly.setText("Tarkista aika kerran viikossa MIKESiltä");weekly.setChecked(NtpJob.prefs(this).getBoolean("enabled",true));root.addView(weekly);
         TextView status=Ui.text(this,NtpJob.status(this),14,Ui.MUTED);root.addView(status);
