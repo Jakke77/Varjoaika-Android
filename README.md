@@ -44,9 +44,9 @@ Lähde on vain julkisen [Jakke77/Varjoaika-Android-repon julkaisut](https://gith
 
 ## Viikoittainen MIKES-aikatarkistus
 
-Oletuksena sovellus tarkistaa ajan kerran viikossa julkisesta `time.mikes.fi`-palvelimesta. Sen aika on synkronoitu Suomen virallisesta ajasta ([VTT MIKES](https://www.vttresearch.com/fi/palvelut/suomen-aika-ntp-palvelu)). Oikea nimi on **time.mikes.fi**. Yksi NTP-pyyntö ja vastaus kulkevat UDP-portissa 123. Androidin verkkotyö odottaa tarvittaessa yhteyttä ja virransäästö voi viivästyttää tarkistusta. Asetuksissa näkyvät tulos, poikkeama sekunteina ja viimeinen onnistunut tarkistus. Tarkistuksen voi kytkeä pois, jolloin sovellus ei tee verkkopyyntöjä.
+Oletuksena sovellus tarkistaa ajan kerran viikossa julkisesta `time.mikes.fi`-palvelimesta. Sen aika on synkronoitu Suomen virallisesta ajasta ([VTT MIKES](https://www.vttresearch.com/fi/palvelut/suomen-aika-ntp-palvelu)). Oikea nimi on **time.mikes.fi**. Yksi NTP-pyyntö ja vastaus kulkevat UDP-portissa 123. Androidin verkkotyö odottaa tarvittaessa yhteyttä ja virransäästö voi viivästyttää tarkistusta. Asetuksissa näkyvät tulos, poikkeama sekunteina ja viimeinen onnistunut tarkistus. Tarkistuksen voi kytkeä pois, jolloin NTP-verkkopyynnöt loppuvat. GitHub-päivitykset kytketään pois erikseen.
 
-**Tarkistus ei muuta puhelimen kelloa.** Androidin tavallisella sovelluksella ei ole oikeutta asettaa järjestelmäaikaa. Kellot näyttävät puhelimen ajan. Pidä Androidin automaattinen päivämäärä ja aika käytössä; sovelluksen asetuksista voi avata puhelimen aika-asetukset. Ei sääpalveluita eikä muita verkkoyhteyksiä.
+**Tarkistus ei muuta puhelimen kelloa.** Androidin tavallisella sovelluksella ei ole oikeutta asettaa järjestelmäaikaa. Kellot näyttävät puhelimen ajan. Pidä Androidin automaattinen päivämäärä ja aika käytössä; sovelluksen asetuksista voi avata puhelimen aika-asetukset. Verkkoyhteyksiä käyttävät vain MIKES-tarkistus ja GitHub-päivitykset.
 
 ## Yhteensopivuus ja rakentaminen
 
