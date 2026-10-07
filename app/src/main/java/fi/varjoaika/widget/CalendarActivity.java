@@ -21,7 +21,7 @@ public class CalendarActivity extends Activity {
     private EntryStore store;
     private LinearLayout root;
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);store=new EntryStore(this);NtpJob.schedule(this);
+        super.onCreate(state);store=new EntryStore(this);NtpJob.schedule(this);UpdateJob.schedule(this,true);
         selected=state==null?Math.max(0,getIntent().getLongExtra("day",Dates.today())):state.getLong("day");
         selected=Math.min(Dates.offset(7000,12,29),selected);
         month=state==null?selected/30:state.getLong("month");render();

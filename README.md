@@ -1,6 +1,6 @@
 # Varjoaika Android
 
-Oma Android-sovellus goottikalenterille: 13 kuukautta, 30 päivää, varjomaiset nimet, omat muistiinpanot ja muistutukset. Kalenteri ja widgetit toimivat offline eikä sovellus pyydä sijainti- tai puhelimen kalenterioikeuksia. Vain valinnainen viikoittainen MIKES-aikatarkistus käyttää Internet-oikeutta. Ei säätä, mainoksia, käyttäjätiliä eikä Pythonia puhelimeen.
+Oma Android-sovellus goottikalenterille: 13 kuukautta, 30 päivää, varjomaiset nimet, omat muistiinpanot ja muistutukset. Kalenteri ja widgetit toimivat offline eikä sovellus pyydä sijainti- tai puhelimen kalenterioikeuksia. Valinnaiset MIKES-aikatarkistus ja GitHub-päivitykset käyttävät Internet-oikeutta. Ei säätä, mainoksia, käyttäjätiliä eikä Pythonia puhelimeen.
 
 **[Julkaisut ja APK-liitteet](https://github.com/Jakke77/Varjoaika-Android/releases)**
 
@@ -26,15 +26,27 @@ Kaikissa ovat Varjokupari-, Yöhopea- ja läpinäkyvä teema. Taustan peittävyy
 
 Muistutukset tallennetaan puhelimen yksityiseen tietokantaan ja ajastetaan Androidin hälytyksinä. Ohjelmaa ei tarvitse pitää avoinna. Android 13+ kysyy ilmoitusluvan; Android 12+ voi vaatia erillisen luvan tarkkoihin hälytyksiin. **Asetukset → Ilmoitus- ja hälytysluvat** avaa oikean asetuksen. Ilman tarkkaa hälytyslupaa sovellus käyttää viivästyä voivaa hälytystä. Ilman ilmoituslupaa muistutusta ei kuitata toimitetuksi, ja luvan sallimisen jälkeen sovellus toimittaa myöhästyneen muistutuksen kerran.
 
-Ilmoituksessa ovat **Siirrä 10 min** ja **Kuittaa**. Oletusääni on itse tuotettu huuhkajan huhuilun jäljitelmä. Voimakkuus on säädettävä; tiedostovalitsimella voit valita puhelimen tukeman oman WAV-, OGG-, MP3- tai muun äänitiedoston. Sovellus tarvitsee luvan vain valittuun tiedostoon. Oma ääni toistetaan enintään 8 sekunnin ajan. Puhelimen ilmoitusäänen voimakkuus ja Älä häiritse -tila vaikuttavat myös toistoon. Ilmoituskanava itsessään on äänetön, jotta sama ääni ei soi kahdesti.
+Ilmoituksessa ovat **Siirrä 10 min** ja **Kuittaa**. Oletusääni on itse tuotettu huuhkajan huhuilun jäljitelmä. Androidin ilmoitusjärjestelmä toistaa hälytysäänen myös sovelluksen ollessa suljettuna. Muistutukset käyttävät korkean tärkeyden kanavaa sekä värinää, jotta ponnahdusilmoitus voi näkyä. Päivitys luo uuden kanavan vanhan äänettömän kanavan tilalle; käyttäjän estämää kanavaa ei avata automaattisesti.
+
+Tiedostovalitsimella voit valita puhelimen tukeman oman WAV-, OGG-, MP3- tai muun äänitiedoston. Sovellus tarvitsee luvan vain valittuun tiedostoon. Jos oma tiedosto ei ole enää luettavissa, muistutus käyttää huuhkajan ääntä. Hälytysäänen voimakkuus säädetään puhelimen ilmoitusäänen asetuksista; sovelluksen liukusäädin säätää esikuuntelua, joka kestää enintään 8 sekuntia. Esikuuntelun 0 % tai äänen poistaminen käytöstä mykistää myös muistutukset. Android päättää varsinaisen ilmoitusäänen toiston keston. Puhelimen Älä häiritse -tila sekä käyttäjän ilmoitusasetukset vaikuttavat ääneen ja ponnahdukseen.
+
+**Asetukset → Testaa ääni ja ponnahdusilmoitus** lähettää testin muuttamatta kalenterimerkintöjä. **Muistutusten ilmoitusasetukset** avaa käytössä olevan kanavan asetukset. Galaxy S22:ssa salli **Ääni ja värinä** sekä **Näytä ponnahdusikkunana**. Jos ilmoitusluokkia ei näy, ota käyttöön **Puhelimen asetukset → Ilmoitukset → Lisäasetukset → Hallitse kunkin sovelluksen ilmoitusluokkia** (nimet vaihtelevat One UI -version mukaan).
 
 Käynnistys puhelimen uudelleenkäynnistyksen ja sovelluspäivityksen jälkeen palauttaa ajastukset. Androidin **Pakota lopettamaan** estää hälytykset, kunnes avaat sovelluksen uudelleen. Valmistajan virransäästö voi viivästyttää hälytyksiä; sovellus ei ohita puhelimen sääntöjä. Tiedot säilyvät saman allekirjoituksen päivityksissä. Sovelluksen poisto poistaa myös paikalliset merkinnät, joten älä poista sovellusta päivitystä varten.
 
+## Automaattiset ja manuaaliset päivitykset
+
+**Asetukset → Sovelluksen päivitykset** näyttää asennetun version ja viimeisen onnistuneen tarkistuksen. **Tarkista päivitykset** tarkistaa GitHubin heti. **Lataa päivitys** lataa uuden APK:n; manuaalinen lataus voi käyttää myös mobiilidataa. **Asenna päivitys** avaa Androidin asennusnäkymän. Android 8+ voi pyytää ensin sallimaan asennukset Varjoajasta; palaa sen jälkeen Asenna päivitys -painikkeeseen.
+
+Oletuksena sovellus tarkistaa uuden version kerran päivässä ja lataa uuden APK:n automaattisesti Wi-Fissä. Voit poistaa automaattilatauksen tai koko automaattitarkistuksen käytöstä. Tarkistus odottaa verkkoyhteyttä; Androidin virransäästö voi viivästyttää sitä. Ajastus säilyy uudelleenkäynnistyksen ja sovelluspäivityksen yli. Tarkistus ei lähetä merkintöjä tai henkilötietoja GitHubiin. Tavallinen sovellus tarvitsee käyttäjän hyväksynnän asennukseen myös automaattilatauksen jälkeen.
+
+Lähde on vain julkisen [Jakke77/Varjoaika-Android-repon julkaisut](https://github.com/Jakke77/Varjoaika-Android/releases). Luonnoksia, testijulkaisuja, debug/test/unsigned-APK:ita ja lähdekoodiarkistoja ei tarjota päivityksinä. Pelkkä julkaisutagi ilman APK-liitettä näkyy tilaviestinä. Verkkovirhe ei poista aiemmin löytynyttä päivitystä. Ennen asennusta tarkistetaan APK:n sovellustunniste, suurempi versionCode, sama allekirjoitus ja GitHubin SHA256-tarkistussumma silloin kun se on saatavilla. Ilmoitus uudesta tai ladatusta versiosta näkyy, kun sovelluksen ilmoitukset on sallittu.
+
 ## Viikoittainen MIKES-aikatarkistus
 
-Oletuksena sovellus tarkistaa ajan kerran viikossa julkisesta `time.mikes.fi`-palvelimesta. Sen aika on synkronoitu Suomen virallisesta ajasta ([VTT MIKES](https://www.vttresearch.com/fi/palvelut/suomen-aika-ntp-palvelu)). Oikea nimi on **time.mikes.fi**. Yksi NTP-pyyntö ja vastaus kulkevat UDP-portissa 123. Androidin verkkotyö odottaa tarvittaessa yhteyttä ja virransäästö voi viivästyttää tarkistusta. Asetuksissa näkyvät tulos, poikkeama sekunteina ja viimeinen onnistunut tarkistus. Tarkistuksen voi kytkeä pois, jolloin sovellus ei tee verkkopyyntöjä.
+Oletuksena sovellus tarkistaa ajan kerran viikossa julkisesta `time.mikes.fi`-palvelimesta. Sen aika on synkronoitu Suomen virallisesta ajasta ([VTT MIKES](https://www.vttresearch.com/fi/palvelut/suomen-aika-ntp-palvelu)). Oikea nimi on **time.mikes.fi**. Yksi NTP-pyyntö ja vastaus kulkevat UDP-portissa 123. Androidin verkkotyö odottaa tarvittaessa yhteyttä ja virransäästö voi viivästyttää tarkistusta. Asetuksissa näkyvät tulos, poikkeama sekunteina ja viimeinen onnistunut tarkistus. Tarkistuksen voi kytkeä pois, jolloin NTP-verkkopyynnöt loppuvat. GitHub-päivitykset kytketään pois erikseen.
 
-**Tarkistus ei muuta puhelimen kelloa.** Androidin tavallisella sovelluksella ei ole oikeutta asettaa järjestelmäaikaa. Kellot näyttävät puhelimen ajan. Pidä Androidin automaattinen päivämäärä ja aika käytössä; sovelluksen asetuksista voi avata puhelimen aika-asetukset. Ei sääpalveluita eikä muita verkkoyhteyksiä.
+**Tarkistus ei muuta puhelimen kelloa.** Androidin tavallisella sovelluksella ei ole oikeutta asettaa järjestelmäaikaa. Kellot näyttävät puhelimen ajan. Pidä Androidin automaattinen päivämäärä ja aika käytössä; sovelluksen asetuksista voi avata puhelimen aika-asetukset. Verkkoyhteyksiä käyttävät vain MIKES-tarkistus ja GitHub-päivitykset.
 
 ## Yhteensopivuus ja rakentaminen
 
