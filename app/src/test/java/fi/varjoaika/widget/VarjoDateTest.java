@@ -23,13 +23,14 @@ public class VarjoDateTest {
     }
     @Test public void widgetDatesMatchRequestedFormat() {
         Calendar now=date(2026,10,13,"Europe/Helsinki");
-        assertEquals("15. ti Varjojenkuu 0001",VarjoDate.from(now).widgetLabel());
+        assertEquals("15. Ka\nVarjojenkuu 0001",VarjoDate.from(now).widgetLabel());
         assertEquals("13. ti Lokakuu 2026",VarjoDate.officialWidgetLabel(now));
         assertEquals("03. ti Marraskuu 2026",VarjoDate.officialWidgetLabel(date(2026,11,3,"Europe/Helsinki")));
     }
     @Test public void widgetNumbersKeepZeroDayAndPadYears() {
-        assertEquals("00. ma Varjojenkuu 0001",VarjoDate.from(date(2026,9,28,"UTC")).widgetLabel());
-        assertEquals("01. ti Varjojenkuu 0001",VarjoDate.from(date(2026,9,29,"UTC")).widgetLabel());
-        assertEquals("00. la Varjojenkuu 0002",VarjoDate.from(date(2027,10,23,"UTC")).widgetLabel());
+        assertEquals("00. Va\nVarjojenkuu 0001",VarjoDate.from(date(2026,9,28,"UTC")).widgetLabel());
+        assertEquals("01. Ka\nVarjojenkuu 0001",VarjoDate.from(date(2026,9,29,"UTC")).widgetLabel());
+        assertEquals("00. No\nVarjojenkuu 0002",VarjoDate.from(date(2027,10,23,"UTC")).widgetLabel());
     }
 }
+

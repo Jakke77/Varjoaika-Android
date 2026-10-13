@@ -14,10 +14,18 @@ Lataa julkaisuun liitetty `Varjoaika-*.apk` puhelimelle, avaa se ja hyväksy ase
 
 Kotinäytössä: paina tyhjää kohtaa pitkään → Widgetit → Varjoaika. Valitse malli ja sen ulkoasu. **⚙** muuttaa vain kyseisen widgetin asetuksia. Kalenterin nuolet vaihtavat kuukautta, päivän napautus avaa päivän sovelluksessa. Widgetiä voi venyttää kotinäytön tavallisilla eleillä.
 
-Versiossa 1.0.3 widgetin päiväykset ovat muodossa **15. ti Varjojenkuu 0001**
-ja **13. ti Lokakuu 2026**: päivä on kaksinumeroinen, viikonpäivä lyhyt,
-kuukauden nimi kokonainen ja vuosi vähintään nelinumeroinen. Sama muoto on
-myös pienessä kellovimpaimessa. Varjoajan nollapäivä näkyy muodossa **00.**.
+Versiossa 1.0.4 widgetin Varjoajan päiväys on kahdella rivillä:
+
+```text
+15. Ka
+Varjojenkuu 0001
+```
+
+Viikonpäivien lyhenteet ovat **Va, Ka, Ru, Ka, Kr, No, Ho**, samat kuin
+sovelluksen kalenterissa. Kallotiistai on **Ka**. Alempi gregoriaaninen päiväys
+säilyy muodossa **13. ti Lokakuu 2026**. Päivä on kaksinumeroinen ja vuosi
+vähintään nelinumeroinen; Varjoajan nollapäivä näkyy muodossa **00.**.
+Sama rivijako on myös pienessä kellovimpaimessa.
 
 | Widget | Oletuskoko | Sisältö |
 |---|---|---|

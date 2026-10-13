@@ -46,7 +46,7 @@ public class CalendarActivity extends Activity {
         previous.setEnabled(month>0);previous.setOnClickListener(v->{month--;render();});
         next.setEnabled(month<7000L*13-1);next.setOnClickListener(v->{month++;render();});
         LinearLayout week=new LinearLayout(this);
-        for(String name:new String[]{"Va","Ka","Ru","Ka","Kr","No","Ho"}) { TextView t=Ui.text(this,name,12,Ui.MUTED);t.setGravity(Gravity.CENTER);week.addView(t,new LinearLayout.LayoutParams(0,-2,1)); }root.addView(week);
+        for(String name:VarjoDate.SHORT_VARJO_WEEKDAYS) { TextView t=Ui.text(this,name,12,Ui.MUTED);t.setGravity(Gravity.CENTER);week.addView(t,new LinearLayout.LayoutParams(0,-2,1)); }root.addView(week);
         int start=(int)(month*30%7);
         java.util.Set<Long> marked=new java.util.HashSet<>();for(EntryStore.Entry e:store.all())if(e.day/30==month)marked.add(e.day);
         int rows=(start+30+6)/7;

@@ -7,6 +7,7 @@ import java.util.TimeZone;
 public final class VarjoDate {
     public static final String[] MONTHS = {"Varjojenkuu", "Hallankuu", "Routakuu", "Korppikuu", "Hylättyjen kuu", "Kalmistonkuu", "Ikiyön kuu", "Verikuu", "Pimentojen kuu", "Kuihtumisen kuu", "Aaveiden kuu", "Marraskuu", "Sielunkuu"};
     public static final String[] WEEKDAYS = {"Varjomaanantai", "Kallotiistai", "Ruumiskeskiviikko", "Kalmistotorstai", "Kryptaperjantai", "Noitalauantai", "Hornasunnuntai"};
+    public static final String[] SHORT_VARJO_WEEKDAYS = {"Va", "Ka", "Ru", "Ka", "Kr", "No", "Ho"};
     private static final String[] OFFICIAL = {"tammikuuta", "helmikuuta", "maaliskuuta", "huhtikuuta", "toukokuuta", "kesäkuuta", "heinäkuuta", "elokuuta", "syyskuuta", "lokakuuta", "marraskuuta", "joulukuuta"};
     private static final String[] SHORT_WEEKDAYS = {"ma", "ti", "ke", "to", "pe", "la", "su"};
     private static final String[] OFFICIAL_MONTHS = {"Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"};
@@ -27,10 +28,10 @@ public final class VarjoDate {
     public static String official(Calendar now) {
         return now.get(Calendar.DAY_OF_MONTH) + ". " + OFFICIAL[now.get(Calendar.MONTH)] + " " + now.get(Calendar.YEAR);
     }
-    /** Compact widget dates use Finnish weekday abbreviations and padded numbers. */
+    /** Keep the Varjo weekday with the day; place the month and year below it. */
     public String widgetLabel() {
-        return String.format(Locale.ROOT, "%02d. %s %s %04d", day,
-            SHORT_WEEKDAYS[weekday], MONTHS[month], year);
+        return String.format(Locale.ROOT, "%02d. %s\n%s %04d", day,
+            SHORT_VARJO_WEEKDAYS[weekday], MONTHS[month], year);
     }
     public static String officialWidgetLabel(Calendar now) {
         int weekday = (now.get(Calendar.DAY_OF_WEEK) + 5) % 7;
@@ -40,3 +41,4 @@ public final class VarjoDate {
     public String dateLabel() { return WEEKDAYS[weekday] + " · Päivä " + day + "\n" + month + ". " + MONTHS[month]; }
     public String yearLabel() { return String.format(Locale.ROOT, "Varjoaika · Vuosi %04d", year); }
 }
+
