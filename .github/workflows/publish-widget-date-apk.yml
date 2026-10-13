@@ -1,0 +1,30 @@
+name: Publish signed Varjoaika 1.0.3
+on:
+  push:
+    branches: [release/widget-dates-1.0.3]
+permissions:
+  contents: write
+concurrency: varjoaika-1.0.3-publication
+jobs:
+  publish:
+    if: github.repository == 'Jakke77/Varjoaika-Android'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Verify signed package checksum
+        working-directory: release-packages/1.0.3
+        run: |
+          cat parts/*.bin > Varjoaika-1.0.3.apk
+          sha256sum -c Varjoaika-1.0.3.apk.sha256
+      - name: Publish tested and signed APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create v1.0.3 \
+            release-packages/1.0.3/Varjoaika-1.0.3.apk \
+            release-packages/1.0.3/Varjoaika-1.0.3.apk.sha256 \
+            --target 95befb66f01225b6741612815cd2b78889c31085 \
+            --title 'Varjoaika Android 1.0.3 — widgetin päiväykset' \
+            --notes-file release-packages/1.0.3/NOTES.md --latest
