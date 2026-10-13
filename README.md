@@ -4,7 +4,7 @@ Oma Android-sovellus goottikalenterille: 13 kuukautta, 30 päivää, varjomaiset
 
 **[Julkaisut ja APK-liitteet](https://github.com/Jakke77/Varjoaika-Android/releases)**
 
-**[Lataa Varjoaika 1.0.3 APK](https://github.com/Jakke77/Varjoaika-Android/releases/download/v1.0.3/Varjoaika-1.0.3.apk)** · [Julkaisun tiedot ja tarkistussumma](https://github.com/Jakke77/Varjoaika-Android/releases/tag/v1.0.3)
+**[Lataa Varjoaika 1.0.4 APK](https://github.com/Jakke77/Varjoaika-Android/releases/download/v1.0.4/Varjoaika-1.0.4.apk)** · [Julkaisun tiedot ja tarkistussumma](https://github.com/Jakke77/Varjoaika-Android/releases/tag/v1.0.4)
 
 Allekirjoitettu samalla avaimella kuin aiemmat versiot. Asenna APK aiemman asennuksen päälle ja avaa Varjoaika. Sovelluksen päivitystarkistus voi myös löytää tämän julkaisun.
 
