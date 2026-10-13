@@ -33,10 +33,9 @@ public class VarjoWidget extends AppWidgetProvider {
         RemoteViews v=new RemoteViews(c.getPackageName(),isCalendar?R.layout.widget_calendar:isAgenda?R.layout.widget_agenda:R.layout.widget_clock);
         v.setImageViewBitmap(R.id.background,WidgetArt.background(style,opacity));v.setTextColor(R.id.title,WidgetArt.accent(style));
         Calendar now=Calendar.getInstance();long today=Math.max(0,Dates.today());VarjoDate date=VarjoDate.from(now);
-        v.setTextViewText(R.id.gothic_date,date==null?"Ennen Varjoajan alkua":date.dateLabel()+"\n"+date.yearLabel());
-        if(date!=null&&height<220)v.setTextViewText(R.id.gothic_date,date.day+". "+VarjoDate.MONTHS[date.month]+"\nVuosi "+date.year);
+        v.setTextViewText(R.id.gothic_date,date==null?"Ennen Varjoajan alkua":date.widgetLabel());
         v.setInt(R.id.gothic_date,"setMaxLines",height<220?2:4);
-        v.setTextViewText(R.id.official,VarjoDate.official(now));v.setTextColor(R.id.gothic_date,WidgetArt.ink(style));v.setTextColor(R.id.official,WidgetArt.ink(style));
+        v.setTextViewText(R.id.official,VarjoDate.officialWidgetLabel(now));v.setTextColor(R.id.gothic_date,WidgetArt.ink(style));v.setTextColor(R.id.official,WidgetArt.ink(style));
         v.setTextViewTextSize(R.id.gothic_date,TypedValue.COMPLEX_UNIT_SP,Math.min(p.getInt("date_size",13),width<180?11:16));
         v.setOnClickPendingIntent(R.id.title,open(c,id,today));
         PendingIntent config=PendingIntent.getActivity(c,id,new Intent(c,WidgetConfigActivity.class).setData(Uri.parse("varjoaika://config/"+id)).putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,id),ReminderReceiver.flags());
