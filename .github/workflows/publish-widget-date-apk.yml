@@ -21,10 +21,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: |
-          gh release create v1.0.4 \\
-            release-packages/1.0.4/Varjoaika-1.0.4.apk \\
-            release-packages/1.0.4/Varjoaika-1.0.4.apk.sha256 \\
-            --target bf1ab6897fe05ae658e09d5cbdd63b154aef757c \\
-            --title 'Varjoaika Android 1.0.4 — Varjoajan päiväys kahdella rivillä' \\
-            --notes-file release-packages/1.0.4/NOTES.md --latest
+        run: gh release create v1.0.4 release-packages/1.0.4/Varjoaika-1.0.4.apk release-packages/1.0.4/Varjoaika-1.0.4.apk.sha256 --target bf1ab6897fe05ae658e09d5cbdd63b154aef757c --title 'Varjoaika Android 1.0.4 — Varjoajan päiväys kahdella rivillä' --notes-file release-packages/1.0.4/NOTES.md --latest
